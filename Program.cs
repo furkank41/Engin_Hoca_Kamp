@@ -1,54 +1,16 @@
-﻿using intro.Business;
-using intro.Entities;
+﻿using intro.Entities;
 
-string message1 = "Krediler";
-bool isAuthenticated = true;
+IndividualCustomer customer1 = new IndividualCustomer();
+IndividualCustomer customer2 = new IndividualCustomer();
+CorporateCustomer customer3 = new CorporateCustomer();
+CorporateCustomer customer4 = new CorporateCustomer();
 
-if (isAuthenticated)
-    Console.WriteLine("Hoşgeldin Engin");
-else
-    Console.WriteLine("Giriş yapılmadı.");
+BaseCustomer[] baseCustomer = new BaseCustomer[] { customer1, customer2, customer3, customer4 };
 
-Console.WriteLine("kod bitti");
-
-string[] loans = new string[]
+foreach (BaseCustomer item in baseCustomer)
 {
-    "Kredi 1",
-    "Kredi 2",
-    "Kredi 3",
-    "Kredi 4"
-};
-
-foreach (var item in loans)
-{
-    Console.WriteLine(item);
-}
-
-Course course1 = new Course();
-course1.Id = 1;
-course1.Name = "C#";
-course1.Description = ".Net 8";
-course1.Price = 0;
-
-Course course2 = new Course()
-{
-    Id = 2,
-    Name = "Java",
-    Description = "Java 17",
-    Price = 10
-};
-
-List<Course> courses = new List<Course>() { course1, course2 };
-foreach (var item in courses)
-{
-    Console.WriteLine(item.Name + " " + item.Price);
-}
-
-CourseManager courseManager = new CourseManager();
-
-Course[] courses2 = courseManager.GetAll();
-
-foreach (Course course in courses2)
-{
-    Console.WriteLine(course.Name);
+    if (item is CorporateCustomer)
+    {
+        Console.WriteLine(((CorporateCustomer)item).TaxNumber);
+    }
 }
